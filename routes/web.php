@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\site\SiteController;
+use App\Http\Controllers\site\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -12,6 +14,15 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+// ele ja importa o use automatico
+Route::get('/contatos', [SiteController::class, 'contact']);
+// Route::get('/', function () {
+//      return view('site/contatos');
+//      return view('site.contatos');
+// });
+
+Route::get('/user', [UserController::class, 'user']);
 
 Route::get('/', function () {
     return view('welcome');
