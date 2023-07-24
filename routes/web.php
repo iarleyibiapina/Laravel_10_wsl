@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\{SupportController};
 use App\Http\Controllers\site\SiteController;
 use App\Http\Controllers\site\UserController;
 use Illuminate\Support\Facades\Route;
@@ -24,6 +25,10 @@ Route::get('/contatos', [SiteController::class, 'contact']);
 
 Route::get('/user', [UserController::class, 'user']);
 
-Route::get('/', function () {
+Route::get('/welcome', function () {
     return view('welcome');
 });
+
+// ROTAS PARA PROJETO
+
+Route::get('/supports', [SupportController::class, 'index']) -> name('supports.index');
