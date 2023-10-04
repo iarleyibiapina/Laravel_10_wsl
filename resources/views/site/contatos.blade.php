@@ -7,8 +7,10 @@
     <title>Contatos</title>
 </head>
 <body>
-    <p>Aqui ficará os contatos</p>
-    <a href="/">Voltar</a>
-    <a href="/user">Usuarios</a>
+    <h1>Aqui ficará os contatos</h1>
+    <ul>
+        <li><a href="/">Voltar</a></li>
+        <li><a href="/user">Usuarios</a></li>
+    </ul>
 </body>
 </html>

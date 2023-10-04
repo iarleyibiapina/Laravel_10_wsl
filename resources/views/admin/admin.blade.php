@@ -4,11 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Pagina de Admin</title>
 </head>
 <body>
-    <h1>
-        Este é um Teste</Em>
-    </h1>
+    <h1>Listar funcionarios:</h1>
+    <a href="/">Voltar para site</a>
 </body>
 </html>

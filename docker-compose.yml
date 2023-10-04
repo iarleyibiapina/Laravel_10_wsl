@@ -20,7 +20,8 @@ services:
         image: nginx:alpine
         restart: unless-stopped
         ports:
-            - "8989:80"
+            # - "8989:80"
+            - "9090:80"
         volumes:
             - ./:/var/www
             - ./docker/nginx/:/etc/nginx/conf.d/
@@ -42,6 +43,19 @@ services:
             - "3388:3306"
         networks:
             - laravel
+
+        # image: postgres
+        # restart: unless-stopped
+        # environment:
+        #     POSTGRES_USER: ${DB_DATABASE:-username}
+        #     POSTGRES_PASSWORD: ${DB_PASSWORD:-userpass}
+        #     POSTGRES_DB: ${DB_DATABASE:-laravel}
+        # ports:
+        #     - 5441:5432
+        # volumes:
+        #     - ./.docker/pg-data:/var/lib/postgressql/data
+        # networks:
+        #     - laravel
 
     # queue
     queue:

@@ -8,7 +8,10 @@
 </head>
 <body>
     <h1>Olá usuario</h1>
-    <a href="/">Voltar</a>
-    <a href="/contatos">Contatos</a>
+
+    <ul>
+        <li><a href="/">Voltar</a></li>
+        <li><a href="/contatos">Contatos</a></li>
+    </ul>
 </body>
 </html>
