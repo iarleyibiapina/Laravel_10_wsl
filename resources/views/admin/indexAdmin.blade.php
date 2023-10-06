@@ -7,7 +7,8 @@
     <title>Pagina de Admin</title>
 </head>
 <body>
-    <h1>Listar funcionarios:</h1>
+    <h1>Pagina suporte:</h1>
     <a href="/">Voltar para site</a>
+    <a href="{{ route('supports.index') }}">Ir para suporte</a>
 </body>
 </html>

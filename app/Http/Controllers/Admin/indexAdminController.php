@@ -5,11 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class SupportController extends Controller
+class indexAdminController extends Controller
 {
     //
     public function index(){
-        // tambem pode usar '/'
-        return view('admin/supports/indexSupport');
+        return view('/admin/indexAdmin');
     }
 }

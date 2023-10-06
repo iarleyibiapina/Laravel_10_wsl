@@ -11,8 +11,9 @@
         Bem vindo a pagina inicial</Em>
     </h1>
     <ul>
+        <li><a href="{{ route('user.index') }}" style="text-decoration: none">Ir para Usuarios</a></li>
         <li><a href="/contatos" style="text-decoration: none">Ir para contatos</a></li>
-        <li><a href="/admin" style="text-decoration: none">Ir para pagina de admin</a></li>
+        <li><a href="{{ route('admin.index') }}" style="text-decoration: none">Ir para pagina de admin</a></li>
     </ul>
 </body>
 </html>

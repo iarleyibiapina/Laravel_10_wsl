@@ -1,11 +1,10 @@
 <?php
 
-use App\Http\Controllers\Admin\{SupportController};
+use App\Http\Controllers\Admin\{SupportController, testeController, indexAdminController};
 use App\Http\Controllers\site\SiteController;
 use App\Http\Controllers\site\UserController;
-use App\Http\Controllers\adminHome;
-use App\Http\Controllers\TesteDoisSingularController;
-use App\Models\testeDoisSingular;
+use App\Http\Controllers\site\ProdutoController;
+    use App\Models\produto;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,9 +21,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function(){
     return view('index');
 });
-Route::get('/welcome', function () {
-    return view('welcome');
-});
 
 // ele ja importa o use automatico
 Route::get('/contatos', [SiteController::class, 'contact']);
@@ -33,12 +29,19 @@ Route::get('/contatos', [SiteController::class, 'contact']);
 //      return view('site.contatos');
 // });
 
-Route::get('/user', [UserController::class, 'user']);
 
 // ROTAS PARA PROJETO
-
 Route::get('/supports', [SupportController::class, 'index']) -> name('supports.index');
-Route::get('/admin', [adminHome::class, 'index']) -> name('admin.index');
+Route::get('/admin', [indexAdminController::class, 'index']) -> name('admin.index');
 
 // chamando na url /teste, o controller testeDoisSingularControler, a classe teste dentro do controller e dando um apelido de teste.index
-Route::get('/teste', [TesteDoisSingularController::class, 'test']) -> name('teste.index');
+Route::get('/teste', [UserController::class, 'user']) -> name('teste.index');
+
+
+// os name, sao para passar a rota de forma dinamica pelo blade
+Route::get('/user', [ProdutoController::class, 'index']) -> name('user.index');
+// como ta pegando dados 'posts' o verbo agora é 'post'. pode ser a mesma URL, desde que verbo seja diferente.
+Route::post('/user', [ProdutoController::class, 'store']) -> name('user.store');
+// ROTAS DE FORMULARIO
+// EXIBIR
+Route::get('/user/form', [ProdutoController::class, 'create']) -> name('user.create');
