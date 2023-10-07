@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Usuario</title>
 </head>
 <body>
     <h1>Olá usuario</h1>
@@ -25,22 +25,16 @@
             <th>status </th>
         </thead>
         <tbody>
-            
-            {{-- <p>{{ $dados['assunto'] }}</p>
-            <p>{{ $dados['descricao'] }}</p>
-            <p>{{ $dados['status'] }}</p>
-            <p> teste</p>
-            @foreach ($dados as $dado)
-            
-            {!! dd($dados) !!} --}}
-                {{-- <tr>
-                    erro na leitura
-                    <td>{{ $dado->status }}</td>
-                    <td>{{ $dado->descricao }}</td>
+             {{-- {!! dd($dados) !!}  --}}
+             {{-- pegando os dados enviados pelo controller (ProdutoController) consultado pelo model (produto) e enviando pela url (compact('dados'))--}}
+             @foreach ($dados as $dado)
+             <tr>
+                    <td> {{ $dado->assunto }} | </td>
+                    <td>{{ $dado->descricao }} |</td>
                     <td>{{ $dado->status }}</td>
                 </tr> 
             @endforeach
-            --}}
+           
         </tbody>
     </table>
 </body>
