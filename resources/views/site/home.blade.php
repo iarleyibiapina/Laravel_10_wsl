@@ -32,7 +32,9 @@
                     <td> {{ $dado->assunto }} | </td>
                     <td>{{ $dado->descricao }} |</td>
                     <td>{{ $dado->status }}</td>
-                </tr> 
+                    <td><a href="{{ route('user.show', $dado->id) }}">Visualizar</a></td>
+                    <td><a href="{{ route('user.edit', $dado->id) }}">Editar</a></td>
+             </tr> 
             @endforeach
            
         </tbody>

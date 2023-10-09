@@ -45,3 +45,6 @@ Route::post('/user', [ProdutoController::class, 'store']) -> name('user.store');
 // ROTAS DE FORMULARIO
 // EXIBIR
 Route::get('/user/form', [ProdutoController::class, 'create']) -> name('user.create');
+Route::get('/user/{id}', [ProdutoController::class, 'show']) -> name('user.show');
+Route::get('/user/{id}/edit', [ProdutoController::class, 'edit']) -> name('user.edit');
+Route::put('/user/{id})', [ProdutoController::class, 'update'])-> name('user.update');

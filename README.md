@@ -2,8 +2,6 @@ Curso de laravel 10 com base no canal [Carlos Ferreira](https://www.youtube.com/
 
 # Setup Docker Laravel 10 com PHP 8.1
 
-[Assine a Academy, e Seja VIP!](https://academy.especializati.com.br)
-
 ### Passo a passo
 
 Clone Repositório
