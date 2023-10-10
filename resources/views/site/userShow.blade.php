@@ -22,5 +22,11 @@
         <label for="descricao">Descrição:</label>
         <td>{{ $dados->descricao }}</td>
     </tr>
+    {{-- metodo delete, precisa do csrf(token de validação de formularios) e metodo http ('delete')--}}
+    <form action="{{ route('user.delete', $dados->id) }}" method="POST">
+    @csrf()
+    @method('DELETE')
+    <button type="submit">Deletar</button>
+</form>
 </body>
 </html>

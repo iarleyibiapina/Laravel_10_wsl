@@ -19,14 +19,9 @@ class ProdutoController extends Controller
         return view('site/home', compact('dados'));
     }
 
-    public function create(){
-        // pega a url, que foi passada o mesmo controller, mas a classe create, retorna o caminho da view.
-        return view('site/formUser/formProduto');
-    }
-
     // pegando a classe 'store', go verbo 'post', pegando dados do 'Request' enviando para variavel '$todosDadosEnviados' e acessando eles depois.
     // Request - verbo especial que 'pega' os pedidos, envios de formularios
-    public function store(Request $todosDadosEnviado){
+    public function create(Request $todosDadosEnviado){
         // outra forma de passar o model, 
         // public function store(Request $todosDadosEnviado, produto $produto)
         
@@ -80,5 +75,15 @@ class ProdutoController extends Controller
             'assunto', 'descricao'
         ]));
         return redirect()->route('user.index');
+    }
+
+    public function delete(string | int $id){
+        if(!$dados = produto::find($id)){
+            return back();
+        }
+
+        $dados->delete();
+
+        redirect()->route('user.index');
     }
 }

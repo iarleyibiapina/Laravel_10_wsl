@@ -37,14 +37,12 @@ Route::get('/admin', [indexAdminController::class, 'index']) -> name('admin.inde
 // chamando na url /teste, o controller testeDoisSingularControler, a classe teste dentro do controller e dando um apelido de teste.index
 Route::get('/teste', [UserController::class, 'user']) -> name('teste.index');
 
-
+// CRUD 
 // os name, sao para passar a rota de forma dinamica pelo blade
-Route::get('/user', [ProdutoController::class, 'index']) -> name('user.index');
 // como ta pegando dados 'posts' o verbo agora é 'post'. pode ser a mesma URL, desde que verbo seja diferente.
-Route::post('/user', [ProdutoController::class, 'store']) -> name('user.store');
-// ROTAS DE FORMULARIO
-// EXIBIR
-Route::get('/user/form', [ProdutoController::class, 'create']) -> name('user.create');
+Route::get('/user', [ProdutoController::class, 'index']) -> name('user.index');
+Route::post('/user', [ProdutoController::class, 'create']) -> name('user.create');
 Route::get('/user/{id}', [ProdutoController::class, 'show']) -> name('user.show');
 Route::get('/user/{id}/edit', [ProdutoController::class, 'edit']) -> name('user.edit');
 Route::put('/user/{id})', [ProdutoController::class, 'update'])-> name('user.update');
+Route::delete('user/{id}', [ProdutoController::class, 'delete'])-> name('user.delete');
