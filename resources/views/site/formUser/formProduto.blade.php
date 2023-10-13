@@ -7,24 +7,26 @@
     <title>Formulario</title>
 </head>
 <body>
+    {{-- com a atualizaçao de request --}}
+    {{-- se houver qualquer tipo de error --}}
+    @if($errors->any())
+    {{-- para cada error, pegando todos os erros --}}
+        @foreach ($errors->all() as $error)
+            {{ $error }}
+        @endforeach
+    @endif
     <h1>Formulario</h1>
     <section>
-        @csrf();
-        <form action="{{ route('user.store') }}" method="POST">
+        @csrf()
+        <form action="{{ route('user.create') }}" method="POST">
             {{-- <input type="text" value="{{ csrf_token() }}" hidden name="_token"> --}}
             {{-- outra forma de criar o token automatico --}}
             @csrf()
             <label for="assunto">Assunto: </label>
             {{-- name tem que ser a mesma da tabela do banco --}}
-            <input type="text" name="assunto">
+            <input type="text" name="assunto" value="{{ old('assunto') }}">
             <label for="descricao">Descrição: </label>
-            <input type="text" name="descricao" >
-            <label for="status">Status: </label>
-            <select name="status" id="statusId" >
-                <option value="ativo">ativo</option>
-                <option value="em analise">em analise</option>
-                <option value="finalizado">finalizado</option>
-            </select>
+            <input type="text" name="descricao" value="{{ old('descricao') }}">
             <button type="submit">Enviar</button>
         </form>
     </section>

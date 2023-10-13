@@ -7,6 +7,11 @@
     <title>Editar dados</title>
 </head>
 <body>
+    @if($errors->any())
+        @foreach ($errors->all() as $error)
+            {{ $error }}
+        @endforeach
+    @endif
     <h1>Editando o assunto {{ $dados->assunto }}</h1>
     <section>
         {{-- id que vai ser alterado --}}

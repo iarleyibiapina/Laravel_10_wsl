@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 // importando para consultas
 use App\Models\produto;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CreateEditProduto;
 
 class ProdutoController extends Controller
 {
@@ -21,7 +22,9 @@ class ProdutoController extends Controller
 
     // pegando a classe 'store', go verbo 'post', pegando dados do 'Request' enviando para variavel '$todosDadosEnviados' e acessando eles depois.
     // Request - verbo especial que 'pega' os pedidos, envios de formularios
-    public function create(Request $todosDadosEnviado){
+
+    // atualização aula 16 (Request para CreateEditProduto)
+    public function create(CreateEditProduto $todosDadosEnviado, produto $produto){
         // outra forma de passar o model, 
         // public function store(Request $todosDadosEnviado, produto $produto)
         
@@ -29,10 +32,13 @@ class ProdutoController extends Controller
 
         // pega os todos os dados do requeste
 
-        $data = $todosDadosEnviado->all();
+        // $data = $todosDadosEnviado->all();
+        // depois de alterado a validação
+        $data = $todosDadosEnviado->validated();
+        $data['status'] = 'ativo';
 
         // chama o model(coluna) e 'create' os dados. por isso é uma boa pratica colocar nos inputs name o nome das colunas, para melhor consulta.
-        produto::create($data);
+        $produto->create($data);
         // quando passado no parametro
         // $produto->create($data);
 
@@ -67,13 +73,15 @@ class ProdutoController extends Controller
         }
         return view('site/userEdit', compact('dados'));
     }
-    public function update(string | int $id, Request $request, produto $dados){
+// atualização aula de request, alterado 'model' "produtos" para 'request' "CreateEditProduto"
+    public function update(string | int $id, CreateEditProduto $request, produto $dados){
         if(!$dados = $dados->find($id)){
             return back();
         }
-        $dados->update($request->only([
-            'assunto', 'descricao'
-        ]));
+        // $dados->update($request->only([
+        //     'assunto', 'descricao'
+        // ]));
+        $dados->update($request->validated());
         return redirect()->route('user.index');
     }
 
