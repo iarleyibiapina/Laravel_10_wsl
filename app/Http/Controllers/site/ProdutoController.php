@@ -3,18 +3,21 @@
 namespace app\Http\Controllers\site;
 
 use Illuminate\Http\Request;
+use App\services\produtoService;
 // importando para consultas
 use App\Models\produto;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateEditProduto;
 
 class ProdutoController extends Controller
-{
+{   
     // consultando pelo model, envia os dados para a variavel 
     // ('model' 'armazena')
-    public function index(produto $todosDadosEnviado){
+    public function __construct(protected ProdutoService $service){}
+    // public function index(produto $todosDadosEnviado){
+    public function index(Request $request){
         // depois joga para outra variavel dentro da classe, aqui o metodo esta pegando todos os elementos
-        $dados = $todosDadosEnviado->all();
+        $dados = $this->service->getAll($request->filter);
         // dd($dados);
         // envia os dados no nome de 'dados'
         return view('site/home', compact('dados'));
@@ -56,7 +59,8 @@ class ProdutoController extends Controller
         // armazena os dados em uma variavel para melhor trabalho
         // $dados = 'model'->find($id);
         // para fazer uma pequena validação, caso id não exista
-        if(!$dados = produto::find($id)){
+        // if(!$dados = produto::find($id)){
+        if(!$dados = $this->service->findOne($id)){
             // envia o usuario de volta, retorna a ação 
             return back();
         }
@@ -65,17 +69,20 @@ class ProdutoController extends Controller
     }
 
 // aqui nos parametros o model é passado de forma dinamica
-    public function edit(string | int $id, produto $dados){
+    // public function edit(string | int $id, produto $dados){
+    public function edit(string $id){
         // mesma logica, porem desta vez irei procurar pela coluna e por id correto.
         // procura na coluna id, pelo id passado e retorna a primeira consulta.
-        if(!$dados = $dados->where('id', $id)->first()){
+        if(!$dados = $this->service->findOne($id)){
             return back();
         }
         return view('site/userEdit', compact('dados'));
     }
 // atualização aula de request, alterado 'model' "produtos" para 'request' "CreateEditProduto"
-    public function update(string | int $id, CreateEditProduto $request, produto $dados){
-        if(!$dados = $dados->find($id)){
+    // public function update(string $id, CreateEditProduto $request, produto $dados){
+    public function update(string $id, CreateEditProduto $request){
+        // if(!$dados = $dados->find($id)){
+        if(!$dados = $this->service->findOne($id)){
             return back();
         }
         // $dados->update($request->only([
@@ -86,11 +93,12 @@ class ProdutoController extends Controller
     }
 
     public function delete(string | int $id){
-        if(!$dados = produto::find($id)){
-            return back();
-        }
+        // if(!$dados = produto::find($id)){
+        //     return back();
+        // }
 
-        $dados->delete();
+        // $dados->delete();
+        $this->service->delete($id);
 
         redirect()->route('user.index');
     }
