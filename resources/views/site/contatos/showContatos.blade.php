@@ -9,8 +9,12 @@
 <body>
     <h1>Aqui ficará os contatos</h1>
     <ul>
-        <li><a href="/">Voltar</a></li>
-        <li><a href="/user">Usuarios</a></li>
+        <li><a href="{{ route('contatos.index') }}">Voltar</a></li>
+    </ul>
+
+    <h1>Contatos cadastrados:</h1>
+    <ul>
+        <li></li>
     </ul>
 </body>
 </html>

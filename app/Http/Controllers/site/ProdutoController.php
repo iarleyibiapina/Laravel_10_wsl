@@ -3,17 +3,17 @@
 namespace app\Http\Controllers\site;
 
 use Illuminate\Http\Request;
-use App\services\produtoService;
 // importando para consultas
 use App\Models\produto;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateEditProduto;
+use App\Services\ProdutoServices;
 
 class ProdutoController extends Controller
 {   
     // consultando pelo model, envia os dados para a variavel 
     // ('model' 'armazena')
-    public function __construct(protected ProdutoService $service){}
+    public function __construct(protected ProdutoServices $service){}
     // public function index(produto $todosDadosEnviado){
     public function index(Request $request){
         // depois joga para outra variavel dentro da classe, aqui o metodo esta pegando todos os elementos
@@ -53,7 +53,6 @@ class ProdutoController extends Controller
     // aqui o model é passado dentro da função com metodo 'model::'
     public function show(string | int $id) {
         // exibe os resultados conforme o id do usuario
-
         // dentro do controller, é usado o model com metodo find()
         // ele ja é especifico para achar o parametro, nesse caso o id certo.
         // armazena os dados em uma variavel para melhor trabalho
@@ -64,7 +63,6 @@ class ProdutoController extends Controller
             // envia o usuario de volta, retorna a ação 
             return back();
         }
-
         return view('site/userShow', compact('dados'));
     }
 
@@ -100,6 +98,6 @@ class ProdutoController extends Controller
         // $dados->delete();
         $this->service->delete($id);
 
-        redirect()->route('user.index');
+        return redirect()->route('user.index');
     }
 }

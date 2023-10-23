@@ -4,7 +4,8 @@ use App\Http\Controllers\Admin\{SupportController, testeController, indexAdminCo
 use App\Http\Controllers\site\SiteController;
 use App\Http\Controllers\site\UserController;
 use App\Http\Controllers\site\ProdutoController;
-    use App\Models\produto;
+use App\Http\Controllers\site\UsuarioController;
+use App\Models\produto;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -46,3 +47,18 @@ Route::get('/user/{id}', [ProdutoController::class, 'show']) -> name('user.show'
 Route::get('/user/{id}/edit', [ProdutoController::class, 'edit']) -> name('user.edit');
 Route::put('/user/{id})', [ProdutoController::class, 'update'])-> name('user.update');
 Route::delete('user/{id}', [ProdutoController::class, 'delete'])-> name('user.delete');
+
+
+// CRUD usuarios (na verdade contatos)
+Route::get('/contatos', [UsuarioController::class, 'index']) -> name('contatos.index');
+// create
+Route::get('/contatos/form', [UsuarioController::class, 'createForm']) -> name('contatos.create.form');
+Route::post('/contatos/form/created', [UsuarioController::class, 'create']) -> name('contatos.create.process');
+// _________________
+Route::get('/contatos/show/{id}', [UsuarioController::class, 'show']) -> name('contatos.show');
+// edit -> update -> return index
+Route::get('/contatos/edit/{id}', [UsuarioController::class, 'edit']) -> name('contatos.edit');
+Route::put('/contatos/update/{id}', [UsuarioController::class, 'update']) -> name('contatos.update');
+// _________________
+Route::get('/contatos/delete/{id}', [UsuarioController::class, 'deleteForm']) -> name('contatos.delete.form');
+Route::delete('/contatos/deleted/{id}', [UsuarioController::class, 'delete']) -> name('contatos.delete.process');

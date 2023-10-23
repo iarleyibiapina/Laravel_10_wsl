@@ -11,7 +11,7 @@
 
     <ul>
         <li><a href="/">Voltar</a></li>
-        <li><a href="/contatos">Contatos</a></li>
+        <li><a href="{{  route('contatos.index') }}">Contatos</a></li>
         {{-- utilizando os names definidos pelo route --}}
         <li><a href="{{ route('user.form') }}">Ir para formularios</a></li>
     </ul>

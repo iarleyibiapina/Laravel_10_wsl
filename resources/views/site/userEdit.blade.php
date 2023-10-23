@@ -21,7 +21,6 @@
             @method('PUT')
             {{-- <input type="text" value="{{ csrf_token() }}" hidden name="_token"> --}}
             {{-- outra forma de criar o token automatico --}}
-            @csrf()
             <label for="assunto">Assunto: </label>
             {{-- name tem que ser a mesma da tabela do banco --}}
             <input type="text" name="assunto" value="{{ $dados->assunto }}">

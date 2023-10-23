@@ -1,14 +1,13 @@
 <?php
 
-use stdClass;
 namespace App\services;
+
+use stdClass;
 
 class produtoService{
     protected $repository;
 
-    public function __construct(){
-
-    }
+    public function __construct(){}
 //elo entre repositorio e controller retornando dados
 // $filter = null, filtro sendo opcional
 // : array retornar um array
