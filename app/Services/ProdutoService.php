@@ -1,13 +1,20 @@
 <?php
 
-namespace App\services;
+namespace App\Services;
 
+use App\DTO\CreateProdutoDTO;
+use App\DTO\UpdateProdutoDTO;
+use App\Repositories\ProdutoRepositoryInterface;
 use stdClass;
 
-class produtoService{
-    protected $repository;
+class ProdutoService{
+    // protected $repository;
 
-    public function __construct(){}
+    public function __construct(
+        protected ProdutoRepositoryInterface $repository,
+    )
+    {
+    }
 //elo entre repositorio e controller retornando dados
 // $filter = null, filtro sendo opcional
 // : array retornar um array
@@ -24,17 +31,15 @@ class produtoService{
             $this->repository->delete($id);
         }
     // create, recebendo parametros
-        public function new(
-    string $assunto, 
-    string $status, 
-    string $descricao): stdClass{
-    // pode ser new() ou store()
-        return $this->repository->new($assunto, $status, $descricao);
+        public function new(CreateProdutoDTO $dto): stdClass{
+        // pode ser new() ou store()
+        // return $this->repository->new($assunto, $status, $descricao); alterado apos criado DTO
+        return $this->repository->new($dto);
         }
         
-    public function update( string $id, string $assunto, string $status, string $descricao): stdClass|null{
+    public function update(UpdateProdutoDTO $dto): stdClass|null{
     // pode ser new() ou store()
-        return $this->repository->new($id, $assunto, $status, $descricao);
+        return $this->repository->update($dto);
     }
     
 }   

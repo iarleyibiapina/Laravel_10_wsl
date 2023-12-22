@@ -44,6 +44,7 @@ Route::get('/user', [ProdutoController::class, 'index']) -> name('user.index');
 Route::get('/user/form', function(){return view('site/formUser/formProduto');}) -> name('user.form');
 Route::post('/user', [ProdutoController::class, 'create']) -> name('user.create');
 Route::get('/user/{id}', [ProdutoController::class, 'show']) -> name('user.show');
+// Route::get('/user/{id}/form', [ProdutoController::class, 'store']) -> name('user.form');
 Route::get('/user/{id}/edit', [ProdutoController::class, 'edit']) -> name('user.edit');
 Route::put('/user/{id})', [ProdutoController::class, 'update'])-> name('user.update');
 Route::delete('user/{id}', [ProdutoController::class, 'delete'])-> name('user.delete');

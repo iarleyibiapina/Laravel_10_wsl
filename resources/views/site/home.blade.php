@@ -13,6 +13,8 @@
         <li><a href="/">Voltar</a></li>
         <li><a href="{{  route('contatos.index') }}">Contatos</a></li>
         {{-- utilizando os names definidos pelo route --}}
+        {{-- {{ dd($dados) }} --}}
+        {{-- <li><a href="{{ route('user.form', $dados[0]['id']) }}">Ir para formularios</a></li> --}}
         <li><a href="{{ route('user.form') }}">Ir para formularios</a></li>
     </ul>
 
@@ -29,11 +31,15 @@
              {{-- pegando os dados enviados pelo controller (ProdutoController) consultado pelo model (produto) e enviando pela url (compact('dados'))--}}
              @foreach ($dados as $dado)
              <tr>
-                    <td> {{ $dado->assunto }} | </td>
+                    {{-- <td> {{ $dado->assunto }} | </td>
                     <td>{{ $dado->descricao }} |</td>
-                    <td>{{ $dado->status }}</td>
-                    <td><a href="{{ route('user.show', $dado->id) }}">Visualizar</a></td>
-                    <td><a href="{{ route('user.edit', $dado->id) }}">Editar</a></td>
+                    <td>{{ $dado->status }}</td> --}}
+                    {{-- por conta de alterações, agora é um array e não u objeto --}}
+                    <td> {{ $dado['assunto'] }} | </td>
+                    <td>{{ $dado['descricao'] }} |</td>
+                    <td>{{ $dado['status'] }}</td>
+                    <td><a href="{{ route('user.show', $dado['id']) }}">Visualizar</a></td>
+                    <td><a href="{{ route('user.edit', $dado['id']) }}">Editar</a></td>
              </tr> 
             @endforeach
            
