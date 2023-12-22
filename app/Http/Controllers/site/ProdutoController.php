@@ -2,24 +2,30 @@
 
 namespace app\Http\Controllers\site;
 
+use App\DTO\CreateProdutoDTO;
+use App\DTO\UpdateProdutoDTO;
 use Illuminate\Http\Request;
 // importando para consultas
 use App\Models\produto;
 use App\Http\Controllers\Controller;
+use App\Services\ProdutoService;
 use App\Http\Requests\CreateEditProduto;
-use App\Services\ProdutoServices;
 
 class ProdutoController extends Controller
 {   
     // consultando pelo model, envia os dados para a variavel 
     // ('model' 'armazena')
-    public function __construct(protected ProdutoServices $service){}
+    public function __construct
+    (
+        protected ProdutoService $service
+    ){}
     // public function index(produto $todosDadosEnviado){
     public function index(Request $request){
         // depois joga para outra variavel dentro da classe, aqui o metodo esta pegando todos os elementos
         $dados = $this->service->getAll($request->filter);
         // dd($dados);
         // envia os dados no nome de 'dados'
+
         return view('site/home', compact('dados'));
     }
 
@@ -66,6 +72,12 @@ class ProdutoController extends Controller
         return view('site/userShow', compact('dados'));
     }
 
+    public function store(CreateEditProduto $request, Produto $produto){
+        dd($request);
+        $this->service->new(CreateProdutoDTO::makeFromRequest($request));
+        return redirect()->route('user.index');
+    }
+
 // aqui nos parametros o model é passado de forma dinamica
     // public function edit(string | int $id, produto $dados){
     public function edit(string $id){
@@ -80,14 +92,19 @@ class ProdutoController extends Controller
     // public function update(string $id, CreateEditProduto $request, produto $dados){
     public function update(string $id, CreateEditProduto $request){
         // if(!$dados = $dados->find($id)){
-        if(!$dados = $this->service->findOne($id)){
-            return back();
-        }
-        // $dados->update($request->only([
-        //     'assunto', 'descricao'
-        // ]));
-        $dados->update($request->validated());
-        return redirect()->route('user.index');
+        // if(!$dados = $this->service->findOne($id)){
+            // $dados->update($request->only([
+                //     'assunto', 'descricao'
+                // ]));
+                // $dados->update($request->validated());
+
+                $dados = $this->service->update(UpdateProdutoDTO::makeFromRequest($request));
+
+                if(!$dados){
+                    return back();
+                }
+
+                return redirect()->route('user.index');
     }
 
     public function delete(string | int $id){
