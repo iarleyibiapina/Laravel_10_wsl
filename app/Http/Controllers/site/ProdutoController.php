@@ -22,8 +22,13 @@ class ProdutoController extends Controller
     // public function index(produto $todosDadosEnviado){
     public function index(Request $request){
         // depois joga para outra variavel dentro da classe, aqui o metodo esta pegando todos os elementos
-        $dados = $this->service->getAll($request->filter);
-        // dd($dados);
+        // $dados = $this->service->getAll($request->filter);
+        $dados = $this->service->paginate(
+            // se nao existir page, default = 1
+            page: $request->get('page', 1),
+            totalPerPage: $request->get('per_page', 15),
+            filter: $request->get('filter')
+        );
         // envia os dados no nome de 'dados'
 
         return view('site/home', compact('dados'));

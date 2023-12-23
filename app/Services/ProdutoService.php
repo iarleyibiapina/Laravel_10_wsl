@@ -17,7 +17,21 @@ class ProdutoService{
     }
 //elo entre repositorio e controller retornando dados
 // $filter = null, filtro sendo opcional
-// : array retornar um array
+    public function paginate(
+        int $page = 1,
+        int $totalPerPage = 15,
+        string $filter = null,
+    )
+    {
+        return $this->repository->paginate(
+            page: $page,
+            totalPerPage: $totalPerPage,
+            filter: $filter,    
+        );        
+    }
+    
+
+    // : array retornar um array
     public function getAll(string $filter = null): array{
     // pegando os dados
             return $this->repository->getAll($filter);

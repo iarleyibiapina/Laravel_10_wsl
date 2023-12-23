@@ -11,7 +11,9 @@ class UsuarioController extends Controller
 {
     //
     public function index(usuario $consultando){
+        // utilizando paginação
         $dados = $consultando->all();
+        $dados = $consultando->paginate();
         return view('site/indexContatos', compact('dados'));
     }
 

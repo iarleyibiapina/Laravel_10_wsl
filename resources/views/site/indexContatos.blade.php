@@ -20,8 +20,10 @@
     <ol>
         {{-- dd{{ $dados }}; --}}
         @foreach ($dados as $dado)
-            <li>Numero.:  {{ $dado['contato'] }} <a class="btn" href="{{ route('contatos.edit', $dado->id) }}">alterar</a> - <a class="btn" href="{{ route('contatos.delete.form', $dado->id) }}">excluir</a></li>
+        {{-- paginação simples --}}
+        <li>Numero.:  {{ $dado['contato'] }} <a class="btn" href="{{ route('contatos.edit', $dado->id) }}">alterar</a> - <a class="btn" href="{{ route('contatos.delete.form', $dado->id) }}">excluir</a></li>
         @endforeach
+        {{ $dados->links() }}
     </ol>
     @endif
 </body>
