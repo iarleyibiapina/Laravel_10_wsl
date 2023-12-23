@@ -5,7 +5,7 @@ namespace App\Repositories;
 use stdClass;
 use App\Models\produto;
 use App\DTO\{CreateProdutoDTO, UpdateProdutoDTO};
-use App\Repositories\{PaginationInterface, ProdutoRepositoryInterface};
+use App\Repositories\{PaginationInterface, PaginationPresenter ,ProdutoRepositoryInterface};
 
 
 class ProdutoEloquentORM implements ProdutoRepositoryInterface
@@ -24,12 +24,13 @@ class ProdutoEloquentORM implements ProdutoRepositoryInterface
                 $query->where('assunto', $filter);
                 $query->orWhere('descricao', 'like',  "%{$filter}%");
             }
-        })
+        })->paginate($totalPerPage, ['*'], 'page', $page);
         // primeiro parametro o total de paginas, segundo quais colunas é para trazer * = todas, nome do parametro, qual pagina 
-        ->paginate($totalPerPage, ['*'], 'page', $page);
 
         // com paginate, dd deve retornar LenthAwarePaginator
-        dd($result->toArray());
+        // dd($result);
+        // dd((new PaginationPresenter($result))->items());
+        return new PaginationPresenter($result);
         }
     public function getAll(String $filter = null): array
     {
