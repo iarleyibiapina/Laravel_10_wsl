@@ -36,8 +36,15 @@ class CreateEditProduto extends FormRequest
 
         // alterando para melhor validação de dados no update
         $rules = [
+            // nova atualização, validaão precisa ser em forma de array
+            // 'assunto' => [
+            //     'required | min:3 | max: 255 | unique:produtos',
+            // ],  
             'assunto' => [
-                'required | min:3 | max: 255 | unique:produtos',
+                'required',
+                'min:3',
+                'max: 255',
+                'unique:produtos',
             ],  
         'descricao' => [
             'required',

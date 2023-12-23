@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{{ asset('css/table.css') }}">
     <title>Formulario</title>
 </head>
+
 <body>
     {{-- com a atualizaçao de request --}}
     {{-- se houver qualquer tipo de error --}}
@@ -21,17 +23,12 @@
         <form action="{{ route('user.create') }}" method="POST">
             {{-- <input type="text" value="{{ csrf_token() }}" hidden name="_token"> --}}
             {{-- outra forma de criar o token automatico --}}
-            @csrf()
-            <label for="assunto">Assunto: </label>
-            {{-- name tem que ser a mesma da tabela do banco --}}
-            <input type="text" name="assunto" value="{{ old('assunto') }}">
-            <label for="descricao">Descrição: </label>
-            <input type="text" name="descricao" value="{{ old('descricao') }}">
-            <button type="submit">Enviar</button>
+            {{-- evitando duplicação de codigo com include --}}
+            @include('site.formUser.partials.form')
         </form>
     </section>
     <ul>
-        <li><a href="/user">Voltar</a></li>
+        <li><a class="btn" href="/user">Voltar</a></li>
         </ul>
 </body>
 </html>

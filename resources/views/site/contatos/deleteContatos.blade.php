@@ -4,12 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{{ asset("css/table.css") }}">
+
     <title>Contatos</title>
 </head>
 <body>
     <h1>Aqui ficará os contatos</h1>
     <ul>
-        <li><a href="{{ route('contatos.index') }}">Voltar</a></li>
+        <li><a class="btn" href="{{ route('contatos.index') }}">Voltar</a></li>
     </ul>
     <h4>Dados a serem deletados</h4>
     {{-- {{ dd($deleteRequests) }} --}}
@@ -17,7 +19,7 @@
         @method('DELETE')
         @csrf
         <input type="text" value="{{ $deleteRequests->contato }}" readonly>
-        <button type="submit">Deletar</button>
+        <button class="btn" type="submit">Deletar</button>
     </form>
 </body>
 </html>
