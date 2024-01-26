@@ -15,8 +15,7 @@ class PaginationPresenter implements PaginationInterface
     private array $items;
     public function __construct(
         protected LengthAwarePaginator $paginator,
-    )
-    {
+    ) {
         //
         $this->items = $this->resolveItems($this->paginator->items());
     }
@@ -39,11 +38,11 @@ class PaginationPresenter implements PaginationInterface
     }
     public function isLastPage(): bool
     {
-        return $this->paginator->currentPage() === $this->paginator->onLastPage();
+        return $this->paginator->currentPage() === $this->paginator->lastPage();
     }
     public function currentPage(): int
     {
-        return $this->paginator->currentPage() ?? 1; 
+        return $this->paginator->currentPage() ?? 1;
     }
     public function getNumberNextPage(): int
     {
@@ -57,9 +56,9 @@ class PaginationPresenter implements PaginationInterface
     private function resolveItems(array $items): array
     {
         $response = [];
-        foreach($items as $item){
+        foreach ($items as $item) {
             $stdClassObject = new stdClass;
-            foreach($item->toArray() as $key => $value){
+            foreach ($item->toArray() as $key => $value) {
                 $stdClassObject->{$key} = $value;
             }
             array_push($response, $stdClassObject);
