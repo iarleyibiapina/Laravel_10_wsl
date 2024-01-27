@@ -42,7 +42,7 @@ class ProdutoController extends Controller
     // Request - verbo especial que 'pega' os pedidos, envios de formularios
 
     // atualização aula 16 (Request para CreateEditProduto)
-    public function create(CreateEditProduto $todosDadosEnviado, produto $produto)
+    public function create(CreateEditProduto $todosDadosEnviado, Produto $produto)
     {
         // outra forma de passar o model, 
         // public function store(Request $todosDadosEnviado, produto $produto)

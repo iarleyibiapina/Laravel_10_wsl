@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,10 +12,10 @@
 <body>
     {{-- com a atualizaçao de request --}}
     {{-- se houver qualquer tipo de error --}}
-    @if($errors->any())
-    {{-- para cada error, pegando todos os erros --}}
+    @if ($errors->any())
+        {{-- para cada error, pegando todos os erros --}}
         @foreach ($errors->all() as $error)
-            {{ $error }}
+            <p><strong>{{ $error }}</strong></p>
         @endforeach
     @endif
     <h1>Formulario</h1>
@@ -29,6 +30,7 @@
     </section>
     <ul>
         <li><a class="btn" href="/user">Voltar</a></li>
-        </ul>
+    </ul>
 </body>
+
 </html>

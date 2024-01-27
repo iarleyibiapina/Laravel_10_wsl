@@ -1,8 +1,8 @@
 <div class="alert-danger">
     <!-- Simplicity is the consequence of refined emotions. - Jean D'Alembert -->
-    @if($errors->any())
+    @if ($errors->any())
         @foreach ($errors->all() as $error)
-            {{ $error }}
+            <p><strong>{{ $error }}</strong></p>
         @endforeach
     @endif
 </div>

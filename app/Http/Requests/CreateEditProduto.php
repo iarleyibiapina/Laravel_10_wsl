@@ -45,17 +45,17 @@ class CreateEditProduto extends FormRequest
                 'min:3',
                 'max: 255',
                 'unique:produtos',
-            ],  
-        'descricao' => [
-            'required',
-            'min:3',
-            'max: 500',
+            ],
+            'descricao' => [
+                'required',
+                'min:3',
+                'max: 500',
             ],
         ];
 
         // caso update
-        if($this->method() === 'PUT'){
-                //criando exceção
+        if ($this->method() === 'PUT') {
+            //criando exceção
             $rules['assunto'] = [
                 'required',
                 'min:3',
@@ -66,6 +66,17 @@ class CreateEditProduto extends FormRequest
                 // sendo unico em produtos, caso o id seja igual no update, ignorar ele
             ];
         };
+
+        return $rules;
+    }
+
+    public function messages(): array
+    {
+        $rules = [
+            'assunto.required' => 'Um titlo é necessario',
+            'assunto.unique' => 'Este titulo já existe',
+            'descricao.required' => 'Um titlo é necessario',
+        ];
 
         return $rules;
     }

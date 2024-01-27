@@ -41,7 +41,7 @@
                     {{-- por conta de alterações, agora é um array e não u objeto --}}
                     <td> {{ $dado->assunto }}</td>
                     <td>{{ $dado->descricao }}</td>
-                    <td>{{ $dado->status }}</td>
+                    <td>{{ getStatusSupport($dado->status) }}</td>
                     <td><a class="btn" href="{{ route('user.show', $dado->id) }}">Visualizar</a><a class="btn"
                             href="{{ route('user.edit', $dado->id) }}">Editar</a></td>
                 </tr>
