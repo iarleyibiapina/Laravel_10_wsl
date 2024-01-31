@@ -2,8 +2,8 @@
 
 namespace App\Services;
 
-use App\DTO\CreateProdutoDTO;
-use App\DTO\UpdateProdutoDTO;
+use App\DTO\Produtos\CreateProdutoDTO;
+use App\DTO\Produtos\UpdateProdutoDTO;
 use App\Repositories\PaginationInterface;
 use App\Repositories\ProdutoRepositoryInterface;
 use stdClass;

@@ -2,8 +2,8 @@
 
 namespace app\Http\Controllers\site;
 
-use App\DTO\CreateProdutoDTO;
-use App\DTO\UpdateProdutoDTO;
+use App\DTO\Produtos\CreateProdutoDTO;
+use App\DTO\Produtos\UpdateProdutoDTO;
 use Illuminate\Http\Request;
 // importando para consultas
 use App\Models\produto;

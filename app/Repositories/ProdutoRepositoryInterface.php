@@ -3,8 +3,8 @@
 namespace App\Repositories;
 
 use stdClass;
-use App\DTO\CreateProdutoDTO;
-use App\DTO\UpdateProdutoDTO;
+use App\DTO\Produtos\CreateProdutoDTO;
+use App\DTO\Produtos\UpdateProdutoDTO;
 use App\Repositories\PaginationInterface;
 
 interface ProdutoRepositoryInterface
@@ -16,5 +16,4 @@ interface ProdutoRepositoryInterface
     public function delete(String $id): void;
     public function new(CreateProdutoDTO $dto): stdClass;
     public function update(UpdateProdutoDTO $dto): stdClass | null;
-    
 }
