@@ -2,6 +2,9 @@
 
 namespace App\DTO\Produtos;
 
+use App\ENUM\ProductStatusEnum;
+use App\Http\Requests\CreateEditProduto;
+
 class CreateProdutoDTO
 {
     // oque eu preciso para cadastrar um produto?
@@ -10,7 +13,7 @@ class CreateProdutoDTO
     public function __construct(
         // define os tipos de dados
         public string $assunto,
-        public string $status,
+        public ProductStatusEnum $status,
         public string $descricao,
     ) {
     }
@@ -21,7 +24,7 @@ class CreateProdutoDTO
     {
         return new self(
             $request->assunto,
-            'ativo',
+            ProductStatusEnum::ativo,
             $request->descricao,
         );
     }

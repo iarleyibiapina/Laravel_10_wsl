@@ -2,6 +2,7 @@
 
 namespace App\DTO\Produtos;
 
+use App\ENUM\ProductStatusEnum;
 use App\Http\Requests\CreateEditProduto;
 
 class UpdateProdutoDTO
@@ -9,7 +10,7 @@ class UpdateProdutoDTO
     public function __construct(
         public string $id,
         public string $assunto,
-        public string $status,
+        public ProductStatusEnum $status,
         public string $descricao,
     ) {
     }
@@ -19,7 +20,7 @@ class UpdateProdutoDTO
         return new self(
             $request->id,
             $request->assunto,
-            'ativo',
+            ProductStatusEnum::ativo,
             $request->descricao,
         );
     }
