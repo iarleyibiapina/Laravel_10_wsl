@@ -24,10 +24,10 @@ class Produto extends Model
 
     // fn é um 'arrow function'
     // quando chega no model, pega o DTO enum, estou mandando para o BANCO a coluna status o nome do enum
-    // public function status(): Attribute
-    // {
-    //     return Attribute::make(
-    //         set: fn (ProductStatusEnum $status) => $status->name,
-    //     );
-    // }
+    public function status(): Attribute
+    {
+        return Attribute::make(
+            set: fn (ProductStatusEnum $status) => $status->name,
+        );
+    }
 }

@@ -20,11 +20,11 @@ class CreateProdutoDTO
     // primeiro, no service ele recebe o DTO como parametro retirando os antigos atributos,
     // o 'create' no service, recebe 'create' do DTO
     // agora alterar em service o parametro,
-    public static function makeFromRequest(CreateProdutoDTO $request): self
+    public static function makeFromRequest(CreateEditProduto $request): self
     {
         return new self(
             $request->assunto,
-            ProductStatusEnum::ativo,
+            ProductStatusEnum::A,
             $request->descricao,
         );
     }

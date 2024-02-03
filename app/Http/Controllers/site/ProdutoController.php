@@ -54,7 +54,7 @@ class ProdutoController extends Controller
         // $data = $todosDadosEnviado->all();
         // depois de alterado a validação
         $data = $todosDadosEnviado->validated();
-        $data['status'] = 'ativo';
+        // $data['status'] = 'C';
 
         // chama o model(coluna) e 'create' os dados. por isso é uma boa pratica colocar nos inputs name o nome das colunas, para melhor consulta.
         $produto->create($data);
@@ -83,7 +83,7 @@ class ProdutoController extends Controller
         return view('site/userShow', compact('dados'));
     }
 
-    public function store(CreateEditProduto $request, Produto $produto)
+    public function store(CreateEditProduto $request)
     {
         // dd($request);
         $this->service->new(CreateProdutoDTO::makeFromRequest($request));
@@ -104,7 +104,7 @@ class ProdutoController extends Controller
     }
     // atualização aula de request, alterado 'model' "produtos" para 'request' "CreateEditProduto"
     // public function update(string $id, CreateEditProduto $request, produto $dados){
-    public function update(string $id, CreateEditProduto $request)
+    public function update(CreateEditProduto $request)
     {
         // if(!$dados = $dados->find($id)){
         // if(!$dados = $this->service->findOne($id)){

@@ -21,7 +21,7 @@
     <h1>Formulario</h1>
     <section>
         @csrf()
-        <form action="{{ route('user.create') }}" method="POST">
+        <form action="{{ route('user.store') }}" method="POST">
             {{-- <input type="text" value="{{ csrf_token() }}" hidden name="_token"> --}}
             {{-- outra forma de criar o token automatico --}}
             {{-- evitando duplicação de codigo com include --}}

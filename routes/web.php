@@ -51,7 +51,8 @@ Route::get('/user', [ProdutoController::class, 'index'])->name('user.index');
 Route::get('/user/form', function () {
     return view('site/formUser/formProduto');
 })->name('user.form');
-Route::post('/user', [ProdutoController::class, 'create'])->name('user.create');
+// Route::post('/user', [ProdutoController::class, 'create'])->name('user.create');
+Route::post('/user/form', [ProdutoController::class, 'store'])->name('user.store');
 Route::get('/user/{id}', [ProdutoController::class, 'show'])->name('user.show');
 // Route::get('/user/{id}/form', [ProdutoController::class, 'store']) -> name('user.form');
 Route::get('/user/{id}/edit', [ProdutoController::class, 'edit'])->name('user.edit');

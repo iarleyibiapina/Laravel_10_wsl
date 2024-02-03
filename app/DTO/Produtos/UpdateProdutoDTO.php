@@ -20,7 +20,7 @@ class UpdateProdutoDTO
         return new self(
             $request->id,
             $request->assunto,
-            ProductStatusEnum::ativo,
+            ProductStatusEnum::A,
             $request->descricao,
         );
     }
