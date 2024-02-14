@@ -8,12 +8,14 @@ use App\Services\ProdutoService;
 use App\Http\Controllers\Controller;
 use App\DTO\Produtos\CreateProdutoDTO;
 use App\Http\Requests\CreateEditProduto;
+use Illuminate\Http\Response as HttpResponse;
 
 class ProdutoController extends Controller
 {
 
     // trocar header no cliente para 
     // accept = application/json
+    // content-type = application/json
     public function __construct(
         protected ProdutoService $service
     ) {
@@ -53,6 +55,14 @@ class ProdutoController extends Controller
     public function show(string $id)
     {
         //
+        if (!$produto = $this->service->findOne($id)) {
+            return response()->json([
+                'error' => 'Not Found',
+                // ], 404);
+                // alternativa ao codigo
+            ], HttpResponse::HTTP_NOT_FOUND);
+        };
+        return new ProdutoApiResource($produto);
     }
 
     /**
@@ -69,5 +79,15 @@ class ProdutoController extends Controller
     public function destroy(string $id)
     {
         //
+        if (!$this->service->findOne($id)) {
+            return response()->json([
+                'error' => 'Not Found',
+            ], HttpResponse::HTTP_NOT_FOUND);
+        };
+
+        $this->service->delete($id);
+
+        // 204
+        return response()->json([], HttpResponse::HTTP_NO_CONTENT);
     }
 }
