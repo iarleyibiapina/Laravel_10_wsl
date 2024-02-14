@@ -18,7 +18,7 @@ class UpdateProdutoDTO
     public static function makeFromRequest(CreateEditProduto $request, string $id = null): self
     {
         return new self(
-            $request->id,
+            $id ?? $request->id,
             $request->assunto,
             ProductStatusEnum::A,
             $request->descricao,
