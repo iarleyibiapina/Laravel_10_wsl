@@ -54,14 +54,17 @@ class CreateEditProduto extends FormRequest
         ];
 
         // caso update
-        if ($this->method() === 'PUT') {
+        if ($this->method() === 'PUT' || $this->method() === 'PATCH') {
+            // Erro por conta do resource
+            $id = $this->produto ?? $this->id;
+
             //criando exceção
             $rules['assunto'] = [
                 'required',
                 'min:3',
                 'max:255',
                 // 1. 'unique:produto, assunto, {$this->id}, id',
-                Rule::unique("produtos")->ignore($this->id),
+                Rule::unique("produtos")->ignore($id),
                 // segunda forma
                 // sendo unico em produtos, caso o id seja igual no update, ignorar ele
             ];
