@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Adapters\ApiAdapter;
 use App\DTO\Produtos\UpdateProdutoDTO;
 use App\Http\Resources\ProdutoApiResource;
 use App\Models\Produto;
@@ -36,19 +37,22 @@ class ProdutoController extends Controller
         );
 
         // Usa do mesmo meio da view, navegar pela url via ?page=1
-        return ProdutoApiResource::collection($dados->items())
-            ->additional([
-                'meta' => [
-                    'total'         => $dados->totalItems(),
-                    'is_first_page' => $dados->isFirstPage(),
-                    'is_last_page'  => $dados->isLastPage(),
-                    'current_page'  => $dados->currentPage(),
-                    'next_page'     => $dados->getNumberNextPage(),
-                    'previous_page' => $dados->getNumberPreviousPage()
-                ]
-            ]);
-
+        // ao inves de retornar tudo isso, usando novo pattern, adapter
+        // return ProdutoApiResource::collection($dados->items())
+        //     ->additional([
+        //         'meta' => [
+        //             'total'         => $dados->totalItems(),
+        //             'is_first_page' => $dados->isFirstPage(),
+        //             'is_last_page'  => $dados->isLastPage(),
+        //             'current_page'  => $dados->currentPage(),
+        //             'next_page'     => $dados->getNumberNextPage(),
+        //             'previous_page' => $dados->getNumberPreviousPage()
+        //         ]
+        //     ]);
         // passando mais informaçoes via additional
+
+        // retonando agora adapter
+        return ApiAdapter::toJson($dados);
     }
 
     /**
