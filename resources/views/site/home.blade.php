@@ -1,15 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
+{{-- vai definiir onde o template vai estar localizado --}}
+@extends('admin.layouts.app')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="{{ asset('css/table.css') }}">
-    <title>Usuario</title>
-</head>
+{{-- titulo da pagina --}}
+@section('title', 'Titulo Home');
 
-<body>
+{{-- Header dinamico desta pagina  --}}
+@section('header')
     <h1>Olá usuario</h1>
 
     <ul class="nav">
@@ -20,7 +16,10 @@
         {{-- <li><a href="{{ route('user.form', $dados[0]['id']) }}">Ir para formularios</a></li> --}}
         <li><a class="btn" href="{{ route('user.form') }}">Ir para formularios</a></li>
     </ul>
+@endsection
 
+{{-- onde tiver o content, 'coloca' este conteudo --}}
+@section('content')
     <hr>
     <h2>Criados:</h2>
     <table>
@@ -52,6 +51,9 @@
 
         </tbody>
     </table>
-</body>
+@endsection
 
-</html>
+@section('footer')
+    {{-- aqui é possivel definir um js, geralmente próprio desta página --}}
+    <p> &copy; I A R L E Y</p>
+@endsection
