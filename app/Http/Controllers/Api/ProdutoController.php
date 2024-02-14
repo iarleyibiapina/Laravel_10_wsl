@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\DTO\Produtos\UpdateProdutoDTO;
 use App\Http\Resources\ProdutoApiResource;
 use Illuminate\Http\Request;
 use App\Services\ProdutoService;
@@ -68,9 +69,23 @@ class ProdutoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(CreateEditProduto $request, string $id)
     {
         //
+        if (!$this->service->findOne($id)) {
+            return response()->json([
+                'error' => 'Not Found',
+            ], HttpResponse::HTTP_NOT_FOUND);
+        };
+
+        $produto = $this->service->update(UpdateProdutoDTO::makeFromRequest($request, $id));
+        if (!$produto) {
+            return response()->json([
+                'error' => 'Not Found',
+            ], HttpResponse::HTTP_NOT_FOUND);
+        };
+
+        return new ProdutoApiResource($produto);
     }
 
     /**
