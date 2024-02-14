@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\DTO\Produtos\UpdateProdutoDTO;
 use App\Http\Resources\ProdutoApiResource;
+use App\Models\Produto;
 use Illuminate\Http\Request;
 use App\Services\ProdutoService;
 use App\Http\Controllers\Controller;
@@ -24,13 +25,30 @@ class ProdutoController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
-        $dados = $this->service->getAll();
+        // lidando com a paginação
+        // $dados = Produto::paginate();
+        $dados = $this->service->paginate(
+            page: $request->get('page', 1),
+            totalPerPage: $request->get('per_page', 1),
+            filter: $request->filter,
+        );
 
-        return $dados;
-        // return new ProdutoApiResource($dados);
+        // Usa do mesmo meio da view, navegar pela url via ?page=1
+        return ProdutoApiResource::collection($dados->items())
+            ->additional([
+                'meta' => [
+                    'total'         => $dados->totalItems(),
+                    'is_first_page' => $dados->isFirstPage(),
+                    'is_last_page'  => $dados->isLastPage(),
+                    'current_page'  => $dados->currentPage(),
+                    'next_page'     => $dados->getNumberNextPage(),
+                    'previous_page' => $dados->getNumberPreviousPage()
+                ]
+            ]);
+
+        // passando mais informaçoes via additional
     }
 
     /**
