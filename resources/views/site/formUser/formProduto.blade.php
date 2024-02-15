@@ -1,15 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('admin.layouts.app')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="{{ asset('css/table.css') }}">
-    <title>Formulario</title>
-</head>
+@section('title', 'Criando')
 
-<body>
+@section('header')
+
+    <div class="flex items-center gap-x-3">
+        <a class="btn" href="{{ route('user.index') }}">Voltar</a>
+        <h1 class="text-lg text-black-500">Criando novos dados</h1>
+    </div>
+@endsection
+
+@section('content')
+
+    <x-alert />
+
     {{-- com a atualizaçao de request --}}
     {{-- se houver qualquer tipo de error --}}
     @if ($errors->any())
@@ -28,9 +32,4 @@
             @include('site.formUser.partials.form')
         </form>
     </section>
-    <ul>
-        <li><a class="btn" href="/user">Voltar</a></li>
-    </ul>
-</body>
-
-</html>
+@endsection
