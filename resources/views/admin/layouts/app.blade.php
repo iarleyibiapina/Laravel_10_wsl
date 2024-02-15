@@ -9,19 +9,19 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     {{-- pegando o titulo ou o titulo default da aplicaçao em 'app' que no caso esta definido como Laravel --}}
     <title>@yield('title') - {{ config('app.name') }}</title>
-    <link rel="stylesheet" href="{{ asset('css/table.css') }}">
+    {{-- <link rel="stylesheet" href="{{ asset('css/table.css') }}"> --}}
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<header>
+<section class="container px-4 mx-auto">
     @yield('header')
-</header>
-{{-- todo conteudo que vai ser renderizado de forma dinamica --}}
-<div class="content">
-    @yield('content')
-</div>
-<footer>
-    @yield('footer')
-</footer>
+    {{-- todo conteudo que vai ser renderizado de forma dinamica --}}
+    <div class="content">
+        @yield('content')
+    </div>
+    <footer>
+        @yield('footer')
+    </footer>
+</section>
 
 <body>
 
