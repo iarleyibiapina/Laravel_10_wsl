@@ -2,6 +2,7 @@
     <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
         <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
             <div class="overflow-hidden border border-gray-200 dark:border-gray-700 md:rounded-lg">
+                <x-success></x-success>
                 <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
                     <thead class="bg-gray-50 dark:bg-gray-800">
                         <tr>
@@ -29,6 +30,8 @@
                             </th>
                         </tr>
                     </thead>
+
+
                     <tbody class="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
                         @foreach ($dados->items() as $dado)
                             {{-- {{ dd($dado) }} --}}
@@ -57,12 +60,11 @@
 
                                 <td class="px-4 py-2 text-sm whitespace-nowrap flex">
                                     {{-- @can('owner', $dado->id) --}}
-                                    <a href="{{ route('user.edit', $dado->id) }}"
-                                        class="px-1 py-1 text-gray-500 transition-colors duration-200 rounded-lg">
+                                    <a href="{{ route('user.edit', $dado->id) }}" {{-- class="px-1 py-1 text-gray-500 transition-colors duration-200 rounded-lg"> --}} class="btn">
                                         Editar
                                     </a>
-                                    <a href="{{ route('user.delete', $dado->id) }}"
-                                        class="px-1 py-1 text-gray-500 transition-colors duration-200 rounded-lg">
+                                    <a href="{{ route('user.delete', $dado->id) }}" {{-- class="px-1 py-1 text-gray-500 transition-colors duration-200 rounded-lg"> --}}
+                                        class="btn">
                                         Excluir
                                     </a>
                                     {{-- @endcan --}}
