@@ -88,7 +88,7 @@ class ProdutoController extends Controller
         // dd($request);
         $this->service->new(CreateProdutoDTO::makeFromRequest($request));
 
-        return redirect()->route('user.index');
+        return redirect()->route('user.index')->with('message', 'Criado com sucesso');
     }
 
     // aqui nos parametros o model é passado de forma dinamica
@@ -119,7 +119,7 @@ class ProdutoController extends Controller
             return back();
         }
 
-        return redirect()->route('user.index');
+        return redirect()->route('user.index')->with('message', 'Atualizado com sucesso');
     }
 
     public function delete(string | int $id)
