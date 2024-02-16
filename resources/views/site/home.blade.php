@@ -1,5 +1,5 @@
 {{-- vai definiir onde o template vai estar localizado --}}
-@extends('admin.layouts.app')
+@extends('admin.layouts.appMeu')
 
 {{-- titulo da pagina --}}
 @section('title', 'Titulo Home')
