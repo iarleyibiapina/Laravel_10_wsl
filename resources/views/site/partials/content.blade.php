@@ -41,7 +41,8 @@
                                 </td>
                                 <td class="px-12 py-2 text-sm font-medium whitespace-nowrap">
                                     {{-- <x-status-dado :status="$dado->status"></x-status-dado> --}}
-                                    {{ getStatusSupport($dado->status) }}
+                                    <x-status-produto :status="$dado->status"></x-status-produto>
+                                    {{-- {{ getStatusProduto($dado->status) }} --}}
                                 </td>
                                 <td class="px-4 py-2 text-sm whitespace-nowrap text-gray-500 dark:text-gray-400">
                                     {{ $dado->descricao }}
