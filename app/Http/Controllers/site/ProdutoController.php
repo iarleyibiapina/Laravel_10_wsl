@@ -28,7 +28,7 @@ class ProdutoController extends Controller
             // se nao existir page, default = 1
             page: $request->get('page', 1),
             // totalPerPage: $request->get('per_page', 15),
-            totalPerPage: $request->get('per_page', 3),
+            totalPerPage: $request->get('per_page', 5),
             filter: $request->get('filter')
         );
         // envia os dados no nome de 'dados'
@@ -131,6 +131,6 @@ class ProdutoController extends Controller
         // $dados->delete();
         $this->service->delete($id);
 
-        return redirect()->route('user.index');
+        return redirect()->route('user.index')->with('message', 'Deletado com sucesso');
     }
 }
