@@ -1,25 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="{{ asset("css/table.css") }}">
+@extends('layouts.appMeu')
 
-    <title>Contatos</title>
-</head>
-<body>
-    <h1>Aqui ficará os contatos</h1>
-    <ul>
-        <li><a class="btn" href="{{ route('contatos.index') }}">Voltar</a></li>
-    </ul>
-    <h4>Dados a serem deletados</h4>
-    {{-- {{ dd($deleteRequests) }} --}}
+@section('title', 'Contatos - Delete')
+
+@section('css')
+    <link rel="stylesheet" href="{{ asset('css/site/contatos.css') }}">
+@endsection
+
+
+@section('header')
+    <h3 class="h-contato w-100 h-100 py-3 text-center bg-green-200">Contato a deletar: {{ $deleteRequests->contato }}</h3>
+@endsection
+
+@section('content')
+    <div class="flex justify-end">
+        <a class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full m-2 p-2 self-end"
+            href="{{ route('contatos.show', $deleteRequests->id) }}">Voltar</a>
+    </div>
+    @if ($errors->any())
+        @foreach ($errors->all() as $error)
+            {{ $error }}
+        @endforeach
+    @endif
+
     <form action="{{ route('contatos.delete.process', $deleteRequests->id) }}" method="POST">
         @method('DELETE')
         @csrf
         <input type="text" value="{{ $deleteRequests->contato }}" readonly>
-        <button class="btn" type="submit">Deletar</button>
+        <button type="submit"
+            class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full">Deletar</button>
     </form>
-</body>
-</html>
+@endsection
+
+@section('js')
+    <script></script>
+@endsection
