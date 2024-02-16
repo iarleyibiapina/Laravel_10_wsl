@@ -1,13 +1,9 @@
 <?php
 
-use App\Models\produto;
 use App\ENUM\ProductStatusEnum;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\site\SiteController;
-use App\Http\Controllers\site\UserController;
-use App\Http\Controllers\site\ProdutoController;
-use App\Http\Controllers\site\UsuarioController;
+use App\Http\Controllers\site\{SiteController, UserController, ProdutoController, ContatoController};
 use App\Http\Controllers\Admin\{SupportController, testeController, indexAdminController};
 
 /*
@@ -62,18 +58,18 @@ Route::delete('user/{id}', [ProdutoController::class, 'delete'])->name('user.del
 
 
 // CRUD usuarios (na verdade contatos)
-Route::get('/contatos', [UsuarioController::class, 'index'])->name('contatos.index');
+Route::get('/contatos', [ContatoController::class, 'index'])->name('contatos.index');
 // create
-Route::get('/contatos/form', [UsuarioController::class, 'createForm'])->name('contatos.create.form');
-Route::post('/contatos/form/created', [UsuarioController::class, 'create'])->name('contatos.create.process');
+Route::get('/contatos/form', [ContatoController::class, 'createForm'])->name('contatos.create.form');
+Route::post('/contatos/form/created', [ContatoController::class, 'create'])->name('contatos.create.process');
 // _________________
-Route::get('/contatos/show/{id}', [UsuarioController::class, 'show'])->name('contatos.show');
+Route::get('/contatos/show/{id}', [ContatoController::class, 'show'])->name('contatos.show');
 // edit -> update -> return index
-Route::get('/contatos/edit/{id}', [UsuarioController::class, 'edit'])->name('contatos.edit');
-Route::put('/contatos/update/{id}', [UsuarioController::class, 'update'])->name('contatos.update');
+Route::get('/contatos/edit/{id}', [ContatoController::class, 'edit'])->name('contatos.edit');
+Route::put('/contatos/update/{id}', [ContatoController::class, 'update'])->name('contatos.update');
 // _________________
-Route::get('/contatos/delete/{id}', [UsuarioController::class, 'deleteForm'])->name('contatos.delete.form');
-Route::delete('/contatos/deleted/{id}', [UsuarioController::class, 'delete'])->name('contatos.delete.process');
+Route::get('/contatos/delete/{id}', [ContatoController::class, 'deleteForm'])->name('contatos.delete.form');
+Route::delete('/contatos/deleted/{id}', [ContatoController::class, 'delete'])->name('contatos.delete.process');
 
 // Após breeze
 

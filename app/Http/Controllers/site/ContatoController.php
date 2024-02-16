@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers\site;
 
-use App\Models\usuario;
-use Illuminate\Http\Request;
+use App\Models\Contatos;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\CreateEditUsuario;
+use App\Http\Requests\CreateContato;
+use App\Http\Requests\UpdateContato;
 
-class UsuarioController extends Controller
+class ContatoController extends Controller
 {
     //
-    public function index(usuario $consultando)
+    public function index(Contatos $consultando)
     {
         // utilizando paginação
         $dados = $consultando->all();
@@ -22,16 +22,16 @@ class UsuarioController extends Controller
     {
         return view('site/contatos/createContatos');
     }
-    // public function create(usuario $usuario, Request $requests){
-    public function create(usuario $usuario, CreateEditUsuario $requests)
+    // public function create(usuario $contato, Request $requests){
+    public function create(Contatos $contato, CreateContato $requests)
     {
         $request = $requests->all();
-        $usuario->create($request);
+        $contato->create($request);
         return redirect()->route('contatos.index')->with('message', 'Contato criado com sucesso');
     }
     public function show(string | int $id)
     {
-        if (!$showRequests = usuario::find($id)) {
+        if (!$showRequests = Contatos::find($id)) {
             return back();
         };
         return view('site/contatos/showContatos', compact('showRequests'));
@@ -39,15 +39,15 @@ class UsuarioController extends Controller
     // edit (formulario) vai para o update
     public function edit(string $id)
     {
-        if (!$editRequests = usuario::find($id)) {
+        if (!$editRequests = Contatos::find($id)) {
             return back();
         };
         return view('site/contatos/editContatos', compact('editRequests'));
     }
     // apos criado regras de request alterar para CreateContato e UpdateContato
-    public function update(string | int $id, CreateEditUsuario $request)
+    public function update(string | int $id, UpdateContato $request)
     {
-        if (!$dados = usuario::find($id)) {
+        if (!$dados = Contatos::find($id)) {
             return back();
         };
         $dados->update($request->only(
@@ -57,14 +57,14 @@ class UsuarioController extends Controller
     }
     public function deleteForm(string $id)
     {
-        if (!$deleteRequests = usuario::find($id)) {
+        if (!$deleteRequests = Contatos::find($id)) {
             return back();
         };
         return view('site/contatos/deleteContatos', compact('deleteRequests'));
     }
     public function delete(string | int $id)
     {
-        if (!$produto = usuario::find($id)->delete()) {
+        if (!$produto = Contatos::find($id)->delete()) {
             return back();
         };
         return redirect()->route('contatos.index')->with('message', 'Contato deletado com sucesso');
