@@ -7,7 +7,7 @@ use Illuminate\Validation\Rule;
 //
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateEditUsuario extends FormRequest
+class CreateContato extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -27,19 +27,24 @@ class CreateEditUsuario extends FormRequest
         // geral
         $rules = [
             'contato' => [
-                'unique:usuarios',
                 'min:4',
                 'max:8',
-                ]
-            ];
-        // para update
-            if($this->method() === 'PUT'){
-                $rules['contato'] = [
-                    'min:4',
-                    'max:8',
-                    Rule::unique('usuarios')->ignore($this->id),
-                ];
-            };
+                'numeric',
+                'required'
+            ]
+        ];
+        return $rules;
+    }
+
+    public function messages(): array
+    {
+        $rules = [
+            'contato.required' => 'Um contato é necessario',
+            'contato.min' => 'Mínimo de 4 caracteres',
+            'contato.max' => 'Máximo de 8 caracteres',
+            'contato.numeric' => 'Deve ser un numero',
+        ];
+
         return $rules;
     }
 }
