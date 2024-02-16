@@ -1,13 +1,14 @@
 <?php
 
+use App\Models\produto;
 use App\ENUM\ProductStatusEnum;
-use App\Http\Controllers\Admin\{SupportController, testeController, indexAdminController};
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\site\SiteController;
 use App\Http\Controllers\site\UserController;
 use App\Http\Controllers\site\ProdutoController;
 use App\Http\Controllers\site\UsuarioController;
-use App\Models\produto;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\{SupportController, testeController, indexAdminController};
 
 /*
 |--------------------------------------------------------------------------
@@ -73,3 +74,17 @@ Route::put('/contatos/update/{id}', [UsuarioController::class, 'update'])->name(
 // _________________
 Route::get('/contatos/delete/{id}', [UsuarioController::class, 'deleteForm'])->name('contatos.delete.form');
 Route::delete('/contatos/deleted/{id}', [UsuarioController::class, 'delete'])->name('contatos.delete.process');
+
+// Após breeze
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+require __DIR__ . '/auth.php';
