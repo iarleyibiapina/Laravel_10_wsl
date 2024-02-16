@@ -17,13 +17,11 @@
                 href="{{ route('contatos.index') }}">Voltar</a>
         </div>
 
-        <x-alert />
 
         <form action="{{ route('contatos.create.process') }}" method="POST">
             @csrf
-            <label for="contato">Contato
-            </label>
-            <input type="text" name="contato" placeholder="(xx)9-xxxx-xxxx" required value="{{ old('contato') }}">
+
+            @include('site.contatos.partials.form')
             <input class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" type="submit"
                 value="enviar">
         </form>

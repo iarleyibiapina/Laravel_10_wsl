@@ -17,15 +17,12 @@
                 href="{{ route('contatos.show', $editRequests->id) }}">Voltar</a>
         </div>
 
-        <x-alert />
-
-
         <form action="{{ route('contatos.update', $editRequests->id) }}" method="POST">
             @method('PUT')
-            @csrf
-            <label for="contato">Novo Contato:
-            </label>
-            <input type="text" name="contato" placeholder="(xx)9-xxxx-xxxx" required value="{{ old('contato') }}">
+
+            @include('site.contatos.partials.form', [
+                'contato' => $editRequests->contato,
+            ])
             <button type="submit"
                 class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">Alterar</button>
         </form>

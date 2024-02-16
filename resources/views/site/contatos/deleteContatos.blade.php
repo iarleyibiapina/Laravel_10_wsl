@@ -24,8 +24,9 @@
 
     <form action="{{ route('contatos.delete.process', $deleteRequests->id) }}" method="POST">
         @method('DELETE')
-        @csrf
-        <input type="text" value="{{ $deleteRequests->contato }}" readonly>
+        @include('site.contatos.partials.form', [
+            'contato' => $deleteRequests->contato,
+        ])
         <button type="submit"
             class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full">Deletar</button>
     </form>

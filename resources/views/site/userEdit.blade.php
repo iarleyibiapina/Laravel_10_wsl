@@ -20,7 +20,6 @@
         @csrf()
         <form action="{{ route('user.update', $dados->id) }}" method="POST">
             @method('PUT')
-            {{-- como é edit, enviando dados para o form --}}
             @include('site.formUser.partials.form', [
                 'produto' => $dados,
             ])

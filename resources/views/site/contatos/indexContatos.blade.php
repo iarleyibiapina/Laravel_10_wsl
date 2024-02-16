@@ -27,7 +27,6 @@
                             class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
                             href="{{ route('contatos.show', $dado->id) }}">ver
                             contato</a></li>
-                    {{-- <li>Numero.:  {{ $dado['contato'] }} <a class="btn" href="{{ route('contatos.edit', $dado->id) }}">alterar</a> - <a class="btn" href="{{ route('contatos.delete.form', $dado->id) }}">excluir</a></li> --}}
                 @endforeach
                 {{ $dados->links() }}
             </ol>
